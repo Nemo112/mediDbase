@@ -1,0 +1,112 @@
+\hypertarget{classSysMnt_1_1SysMnt}{\section{Dokumentace třídy Sys\-Mnt.\-Sys\-Mnt}
+\label{classSysMnt_1_1SysMnt}\index{Sys\-Mnt.\-Sys\-Mnt@{Sys\-Mnt.\-Sys\-Mnt}}
+}
+
+
+Class containing methods for mounting/listing devices.  
+
+
+\subsection*{Veřejné metody}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classSysMnt_1_1SysMnt_ae5cf3574dd0a7508c9d84184dccf55f1}{def {\bfseries is\-\_\-block\-\_\-device}}\label{classSysMnt_1_1SysMnt_ae5cf3574dd0a7508c9d84184dccf55f1}
+
+\item 
+def \hyperlink{classSysMnt_1_1SysMnt_a5e4cb1666ae4827b9824b11b0fabbadf}{get\-List}
+\begin{DoxyCompactList}\small\item\em Method to get list of block devices. \end{DoxyCompactList}\item 
+def \hyperlink{classSysMnt_1_1SysMnt_a3fab8f0e7fa379fe5a416d9a962d0870}{tst\-Mount}
+\begin{DoxyCompactList}\small\item\em Method to mount device. \end{DoxyCompactList}\item 
+def \hyperlink{classSysMnt_1_1SysMnt_a0d75f68939cb5bb90aca5f5fc480c81e}{dd\-Sam}
+\begin{DoxyCompactList}\small\item\em Method to create sample of block file. \end{DoxyCompactList}\item 
+def \hyperlink{classSysMnt_1_1SysMnt_ab060ce00b125e74ab01c872c95ffb3f1}{u\-Mnt}
+\begin{DoxyCompactList}\small\item\em Method to umount. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailní popis}
+Class containing methods for mounting/listing devices. 
+
+\subsection{Dokumentace k metodám}
+\hypertarget{classSysMnt_1_1SysMnt_a0d75f68939cb5bb90aca5f5fc480c81e}{\index{Sys\-Mnt\-::\-Sys\-Mnt@{Sys\-Mnt\-::\-Sys\-Mnt}!dd\-Sam@{dd\-Sam}}
+\index{dd\-Sam@{dd\-Sam}!SysMnt::SysMnt@{Sys\-Mnt\-::\-Sys\-Mnt}}
+\subsubsection[{dd\-Sam}]{\setlength{\rightskip}{0pt plus 5cm}def Sys\-Mnt.\-Sys\-Mnt.\-dd\-Sam (
+\begin{DoxyParamCaption}
+\item[{}]{self, }
+\item[{}]{name, }
+\item[{}]{size = {\ttfamily 100}}
+\end{DoxyParamCaption}
+)}}\label{classSysMnt_1_1SysMnt_a0d75f68939cb5bb90aca5f5fc480c81e}
+
+
+Method to create sample of block file. 
+
+
+\begin{DoxyParams}{Parametry}
+{\em name} & Name of file \\
+\hline
+{\em size} & Size of file in M\-B \\
+\hline
+{\em self} & Point on class \\
+\hline
+\end{DoxyParams}
+\hypertarget{classSysMnt_1_1SysMnt_a5e4cb1666ae4827b9824b11b0fabbadf}{\index{Sys\-Mnt\-::\-Sys\-Mnt@{Sys\-Mnt\-::\-Sys\-Mnt}!get\-List@{get\-List}}
+\index{get\-List@{get\-List}!SysMnt::SysMnt@{Sys\-Mnt\-::\-Sys\-Mnt}}
+\subsubsection[{get\-List}]{\setlength{\rightskip}{0pt plus 5cm}def Sys\-Mnt.\-Sys\-Mnt.\-get\-List (
+\begin{DoxyParamCaption}
+\item[{}]{self}
+\end{DoxyParamCaption}
+)}}\label{classSysMnt_1_1SysMnt_a5e4cb1666ae4827b9824b11b0fabbadf}
+
+
+Method to get list of block devices. 
+
+
+\begin{DoxyParams}{Parametry}
+{\em self} & Point on class \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Návratová hodnota}
+List of block devices 
+\end{DoxyReturn}
+\hypertarget{classSysMnt_1_1SysMnt_a3fab8f0e7fa379fe5a416d9a962d0870}{\index{Sys\-Mnt\-::\-Sys\-Mnt@{Sys\-Mnt\-::\-Sys\-Mnt}!tst\-Mount@{tst\-Mount}}
+\index{tst\-Mount@{tst\-Mount}!SysMnt::SysMnt@{Sys\-Mnt\-::\-Sys\-Mnt}}
+\subsubsection[{tst\-Mount}]{\setlength{\rightskip}{0pt plus 5cm}def Sys\-Mnt.\-Sys\-Mnt.\-tst\-Mount (
+\begin{DoxyParamCaption}
+\item[{}]{self, }
+\item[{}]{name}
+\end{DoxyParamCaption}
+)}}\label{classSysMnt_1_1SysMnt_a3fab8f0e7fa379fe5a416d9a962d0870}
+
+
+Method to mount device. 
+
+
+\begin{DoxyParams}{Parametry}
+{\em name} & Device to be mounted \\
+\hline
+{\em self} & Point on class \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Návratová hodnota}
+True if mounted, false if it failed 
+\end{DoxyReturn}
+\hypertarget{classSysMnt_1_1SysMnt_ab060ce00b125e74ab01c872c95ffb3f1}{\index{Sys\-Mnt\-::\-Sys\-Mnt@{Sys\-Mnt\-::\-Sys\-Mnt}!u\-Mnt@{u\-Mnt}}
+\index{u\-Mnt@{u\-Mnt}!SysMnt::SysMnt@{Sys\-Mnt\-::\-Sys\-Mnt}}
+\subsubsection[{u\-Mnt}]{\setlength{\rightskip}{0pt plus 5cm}def Sys\-Mnt.\-Sys\-Mnt.\-u\-Mnt (
+\begin{DoxyParamCaption}
+\item[{}]{self}
+\end{DoxyParamCaption}
+)}}\label{classSysMnt_1_1SysMnt_ab060ce00b125e74ab01c872c95ffb3f1}
+
+
+Method to umount. 
+
+
+\begin{DoxyParams}{Parametry}
+{\em self} & Point on class \\
+\hline
+\end{DoxyParams}
+
+
+Dokumentace pro tuto třídu byla generována z následujícího souboru\-:\begin{DoxyCompactItemize}
+\item 
+\hyperlink{SysMnt_8py}{Sys\-Mnt.\-py}\end{DoxyCompactItemize}
