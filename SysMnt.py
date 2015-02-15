@@ -17,6 +17,11 @@ class SysMnt:
 	""" \brief Class containing methods for mounting/listing devices
 	"""
 	def is_block_device(self,filename):
+		"""\brief Method to get if file is block file
+		\param self Point on class
+		\param filename Name of file
+		\return False if not, else mode of block device
+		"""
 		try:
 			mode = os.lstat(filename).st_mode
 		except OSError:
@@ -80,5 +85,6 @@ class SysMnt:
 		"""
 		subprocess.call("umount ./mnt/", shell=True)
 if __name__=="__main__":
-	s=SysMnt()
-	print s.is_block_device("/dev/sdd1")
+	print("Just for import")
+	#s=SysMnt()
+	#print s.is_block_device("/dev/sdd1")

@@ -33,6 +33,7 @@ class Indx:
 		""" Method for generating name of file
 		\param self Pointer on class
 		\param name Name path to hashed file
+		\param db Name input
 		\return String containing name of new medium
 		"""
 		if db == None:
@@ -84,6 +85,4 @@ class Indx:
 				toWr += len(path)*'---' + file + "\n"
 		return toWr
 if __name__=="__main__":
-	i=Indx()
-	print i.hashFile("/dev/sdd1")
 	print("Just for import")

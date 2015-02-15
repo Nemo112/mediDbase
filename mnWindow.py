@@ -8,6 +8,7 @@ import multiprocessing
 from SysMnt import SysMnt
 from Queue import Empty, Full
 from DBHand import DBHand
+from Prename import Prename
 import subprocess
 import re
 import os
@@ -21,6 +22,8 @@ if __name__ == "__main__":
 			""" Constructor od the class
 			\param self Pointer on class
 			\param r Pointer on Tkinker window
+			\param qii Input queue
+			\param qoi Output queue
 			"""
 			## Pointer on TK window
 			self.root=r
@@ -39,13 +42,17 @@ if __name__ == "__main__":
 			self.db=DBHand()
 			## New device detection activation
 			self.lo=False
+			## Prename from file
+			self.pname=Prename()
 			## Name of currently loading devices
-			self.name=""
+			self.name=self.pname.getPrename()
+
 		def startListen(self):	
 			""" Method for starting listening to new media
 			\param self Pointer on class
 			"""
 			if self.lo == False:
+				## list of dbs lines
 				self.dvs=self.sysm.getList()
 				self.beg.configure(text="Stop")
 				self.lo=True
@@ -87,7 +94,7 @@ if __name__ == "__main__":
 						m = re.search(reg,i['date'],re.IGNORECASE)					
 					except:
 						m = "A"
-					if m != "":
+					if m != None:
 						self.tl.insert('end', i['date'])
 		def keyEn(self,evt):
 			"""Method for enter in entry box for name
@@ -101,19 +108,8 @@ if __name__ == "__main__":
 			"""Method for generating a list and calling txt reader from OS to show user
 			\param self Pointer on class
 			"""
-			naed="pluma"
 			self.db.buildListTxt("./list.txt")
-			x=open("/usr/share/applications/defaults.list","r")
-			tx=x.read()
-			x.close()
-			for ln in tx.split("\n"):
-				if "text/plain" in ln:
-					co=ln.split("=")[1]
-					if ";" in co:
-						naed = co.split(";")[1].split(".")[0]
-					else:
-						naed = co.split(".")[0]
-			c=[naed,"list.txt"]
+			c=["xdg-open","list.txt"]
 			proc = subprocess.Popen(c)
 		def keyNm(self,evt):
 			"""Method for enter in entry box for name
@@ -123,11 +119,12 @@ if __name__ == "__main__":
 			if self.en.get() == "":
 				return
 			self.name=self.en.get()
+			self.pname.setPrename(self.en.get())
 			print self.name
 		def OnDub(self,event):
 			"""Method for getting event from listbox
 			\param self Pointer on class
-			\param evt Sended event
+			\param event Sended event
 			"""
 			widget = event.widget
 			selection=widget.curselection()
@@ -155,12 +152,12 @@ if __name__ == "__main__":
 			
 			gpMo = LabelFrame(self.root, text="List by", padx=2, pady=1)
 			gpMo.place(relx=0.01, rely=0.22)
-			self.v = IntVar()
 			## Var telling what to choose
+			self.v = IntVar()
 			self.v.set(1)
 			languages = [
 				("Names",1),
-				("Apps",2),
+				("Files",2),
 				("Date",3)
 			]
 			for txt, val in languages:
@@ -168,7 +165,7 @@ if __name__ == "__main__":
 			
 			gpLst = LabelFrame(self.root, text="DBase listing", padx=5, pady=5)
 			gpLst.place(relx=0.01, rely=0.38)	
-			
+			## Name of finded item
 			self.ew=StringVar()
 			self.ew.set("*")
 			en=Entry(gpLst,width=21,textvariable=self.ew)
@@ -185,8 +182,9 @@ if __name__ == "__main__":
 			self.listRes()
 			
 			Button(self.root,height=1, width=23,text="Get a list",command=self.getList).place(relx=0.5, rely=0.07)
-			# Name of new media
+			## Name of new media
 			self.en=StringVar()
+			self.en.set(self.name)
 			nn=Entry(self.root,width=15,textvariable=self.en)
 			nn.place(relx=0.68, rely=0.2)
 			nn.bind("<KeyPress>", self.keyNm)
@@ -270,19 +268,7 @@ if __name__ == "__main__":
 			""" Booklet opener
 			\param self Pointer on class
 			"""
-			naed="pluma"
-			self.db.buildListTxt("./list.txt")
-			x=open("/usr/share/applications/defaults.list","r")
-			tx=x.read()
-			x.close()
-			for ln in tx.split("\n"):
-				if "text/plain" in ln:
-					co=ln.split("=")[1]
-					if ";" in co:
-						naed = co.split(";")[1].split(".")[0]
-					else:
-						naed = co.split(".")[0]
-			c=[naed,"./books/"+self.ls['name'] + ".txt"]
+			c=["xdg-open","./books/"+self.ls['name'] + ".txt"]
 			proc = subprocess.Popen(c)
 		def errItem(self):
 			""" Method for erasing item

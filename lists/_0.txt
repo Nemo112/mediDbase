@@ -1,2 +1,11 @@
 ------
-------lost+found
+---------boot.msg
+---------initrd.cgz
+---------isolinux.bin
+---------isolinux.cfg
+---------readme.txt
+---------scsi.cgz
+---------syslinux.cfg
+---------syslinux.exe
+---------vmlinuz
+---------ldlinux.sys

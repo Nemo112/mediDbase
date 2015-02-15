@@ -23,7 +23,7 @@ class DBHand:
 			raise FileNotFoundError()
 		if os.path.isdir(self.lsts) == False:
 			raise FileNotFoundError()
-			
+		
 	def getLastName(self):
 		""" Method for getting last name
 		\param self Pointer on class
@@ -32,6 +32,8 @@ class DBHand:
 		a=open(self.dbs,'rb')
 		l = a.readlines()
 		a.close()
+		if len(l) == 0:
+			return ""
 		i=-1
 		while l[i].replace(" ","") == "":
 			i -= 1
@@ -61,7 +63,7 @@ class DBHand:
 		return None
 	def getByDate(self,date):
 		""" Getter by date
-		\param name Name of medium
+		\param date Date of media
 		\param self Pointer on class
 		\return Dict containing result
 		"""
@@ -135,7 +137,9 @@ class DBHand:
 	def genNewInput(self,name,flP,mnt,qo=None):
 		""" Inputs new line in DBase
 		\param name Name of media given by user
+		\param flP Path to sample
 		\param mnt Mounted fs
+		\param qo Output queue
 		\param self Pointer on class
 		"""
 		# line in db:
@@ -209,7 +213,7 @@ class DBHand:
 		os.remove("./books/" + name + ".txt")
 	def genBookl(self,li):
 		""" Generate Booklet
-		\param hash Id of item in db
+		\param li Listed item to be generated booklet for
 		\param self Pointer on class
 		"""
 		bkl=""
@@ -371,6 +375,6 @@ class DBHand:
 		f.close()
 if __name__=="__main__":
 	print("Just for import")
-	db=DBHand()
-	print db.getLastName()
+	#db=DBHand()
+	#print db.getLastName()
 	#print DBHand().getList()
