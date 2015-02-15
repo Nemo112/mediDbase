@@ -10,6 +10,7 @@ import time
 import string
 import random
 
+
 class Indx:
 	"""\brief Class for indexing and information selecting
 	"""
@@ -37,30 +38,18 @@ class Indx:
 		\return String containing name of new medium
 		"""
 		if db == None:
-			tm = str(int(time.time()))[-4:-1]
-			ra = ''.join(random.choice(string.ascii_uppercase + string.digits) for _ in range(2))
-			return (name + ra + tm)
-		else:
-			print db.getLastName()
-			print len(db.getLastName().split("_"))
-			if len(db.getLastName().split("_")) >= 2:
-				l=db.getLastName().split("_")[1]
+			raise ValueError("Žádná databáze")	
+		if len(db.getLastName().split("_")) >= 2:
+			l=db.getLastName().split("_")[1]
+			if l == "":
+				return name + "_0"
 			else:
-				l=""
-			try:
-				#print l + ":elko"
-				if l == "":
-				
-					i=0
-				else:
-					i=int(l)
-					i += 1
-				#print "ret:" + name + "_" + str(i)
+				i = int(l)
+				i += 1
 				return name + "_" + str(i)
-			except:
-				tm = str(int(time.time()))[-4:-1]
-				ra = ''.join(random.choice(string.ascii_uppercase + string.digits) for _ in range(2))
-				return (name + ra + tm)			
+		else:
+			return name + "_0"
+			
 	def getTime(self,timestp="[%H:%M:%S %d.%m.%Y]"):
 		""" Method for generating timestamp
 		\param self Pointer on class
@@ -86,3 +75,7 @@ class Indx:
 		return toWr
 if __name__=="__main__":
 	print("Just for import")
+	#from DBHand import DBHand
+	#db=DBHand()
+	#i=Indx()
+	#print i.makeName("",db)

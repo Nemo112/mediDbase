@@ -67,7 +67,7 @@ class SysMnt:
 				d=True
 				break
 		if d == False:
-			rt=subprocess.call("mount \""+ name + "\" ./mnt/", shell=True)
+			rt=subprocess.call("mount -t iso9660 \""+ name + "\" ./mnt/", shell=True)
 		if rt == 0:
 			return True
 		else:

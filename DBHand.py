@@ -29,7 +29,7 @@ class DBHand:
 		\param self Pointer on class
 		\return Last name
 		"""
-		a=open(self.dbs,'rb')
+		a=open(self.dbs,'r')
 		l = a.readlines()
 		a.close()
 		if len(l) == 0:
@@ -180,7 +180,7 @@ class DBHand:
 		if qo != None:
 			qo.put("DB ready;85")
 		fl=open(self.dbs,"a")
-		fl.write(nm + ";" + hs + ";" + dt + ";" + self.lsts + "/" + nm + ".txt\n")
+		fl.write("\n" + nm + ";" + hs + ";" + dt + ";" + self.lsts + "/" + nm + ".txt")
 		fl.close()
 		# Writting list of medium
 		fl=open(self.lsts + "/" + nm + ".txt","w")
@@ -203,14 +203,18 @@ class DBHand:
 		tmp=""
 		# removing line from dbs
 		for line in cn.split("\n"):
-			if name != line.split(";")[0]:
+			if line.replace(" ","") == "":
+				continue
+			elif name != line.split(";")[0]:
 				tmp = tmp + line +  "\n"
 		f=open(self.dbs,"w")
 		f.write(tmp)
 		f.close()
 		# removing list file
-		os.remove(self.lsts + "/" + name + ".txt")
-		os.remove("./books/" + name + ".txt")
+		if os.path.isfile(self.lsts + "/" + name + ".txt"):
+			os.remove(self.lsts + "/" + name + ".txt")
+		if os.path.isfile("./books/" + name + ".txt"):
+			os.remove("./books/" + name + ".txt")
 	def genBookl(self,li):
 		""" Generate Booklet
 		\param li Listed item to be generated booklet for
